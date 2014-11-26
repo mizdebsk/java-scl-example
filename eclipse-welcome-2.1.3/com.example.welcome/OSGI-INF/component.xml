@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="com.example.welcome">
+   <implementation class="com.example.welcome.impl.Welcome"/>
+   <service>
+      <provide interface="com.example.welcome.IWelcome"/>
+   </service>
+</scr:component>

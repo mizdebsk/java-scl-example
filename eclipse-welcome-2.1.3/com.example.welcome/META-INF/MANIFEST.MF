@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Welcome
+Bundle-SymbolicName: com.example.welcome
+Bundle-Version: 2.1.3
+Bundle-Vendor: EXAMPLE
+Require-Bundle: system.bundle
+Bundle-ActivationPolicy: lazy
+Import-Package: hello;version="0.0.1",
+ hello.impl;version="0.0.1"
+Service-Component: OSGI-INF/component.xml
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Export-Package: com.example.welcome
