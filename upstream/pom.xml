@@ -1,0 +1,11 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>biz.hello</groupId>
+  <artifactId>hello</artifactId>
+  <version>0.0.1</version>
+  <packaging>pom</packaging>
+  <modules>
+    <module>hello-api</module>
+    <module>hello-impl</module>
+  </modules>
+</project>

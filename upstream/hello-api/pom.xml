@@ -1,0 +1,9 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>biz.hello</groupId>
+    <artifactId>hello</artifactId>
+    <version>0.0.1</version>
+  </parent>
+  <artifactId>hello-api</artifactId>
+</project>

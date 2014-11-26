@@ -1,0 +1,21 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>biz.hello</groupId>
+    <artifactId>hello</artifactId>
+    <version>0.0.1</version>
+  </parent>
+  <artifactId>hello-impl</artifactId>
+  <dependencies>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>hello-api</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>sysout</groupId>
+      <artifactId>sysout</artifactId>
+      <version>1.0.0</version>
+    </dependency>
+  </dependencies>
+</project>
