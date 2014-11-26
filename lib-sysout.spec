@@ -1,6 +1,6 @@
 Name:           lib-sysout
 Version:        1.0.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        lib-sysout
 License:        XXX
 URL:            XXX
@@ -20,10 +20,13 @@ lib-sysout
 %setup -qcT
 %mvn_file : %{name}
 
+echo "<project><modelVersion>4.0.0</modelVersion><groupId>sysout</groupId><artifactId>sysout</artifactId><version>%{version}</version></project>" >pom.xml
+%pom_add_dep commons-io:commons-io
+
 %build
 javac -d . -cp $(build-classpath commons-io) %{SOURCE0}
 jar cfm sysout.jar %{SOURCE1} org
-%mvn_artifact sysout:sysout:%{version} sysout.jar
+%mvn_artifact pom.xml sysout.jar
 
 %install
 %mvn_install
@@ -31,5 +34,8 @@ jar cfm sysout.jar %{SOURCE1} org
 %files -f .mfiles
 
 %changelog
+* Wed Nov 26 2014 Mikolaj Izdebski <mizdebsk@redhat.com> - 1.0.0-2
+- Add Maven POM
+
 * Wed Nov 26 2014 Mikolaj Izdebski <mizdebsk@redhat.com> - 1.0.0-1
 - Initial packaging
