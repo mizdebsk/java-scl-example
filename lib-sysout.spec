@@ -1,6 +1,6 @@
 Name:           lib-sysout
 Version:        1.0.0
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        lib-sysout
 License:        XXX
 URL:            XXX
@@ -24,7 +24,7 @@ echo "<project><modelVersion>4.0.0</modelVersion><groupId>sysout</groupId><artif
 %pom_add_dep commons-io:commons-io
 
 %build
-javac -d . -cp $(build-classpath commons-io) %{SOURCE0}
+javac -source 1.5 -target 1.5 -d . -cp $(build-classpath commons-io) %{SOURCE0}
 jar cfm sysout.jar %{SOURCE1} org
 %mvn_artifact pom.xml sysout.jar
 
@@ -34,6 +34,9 @@ jar cfm sysout.jar %{SOURCE1} org
 %files -f .mfiles
 
 %changelog
+* Wed Nov 26 2014 Mikolaj Izdebski <mizdebsk@redhat.com> - 1.0.0-3
+- Set compiler source/target to 1.5
+
 * Wed Nov 26 2014 Mikolaj Izdebski <mizdebsk@redhat.com> - 1.0.0-2
 - Add Maven POM
 
