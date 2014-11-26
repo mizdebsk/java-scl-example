@@ -6,6 +6,22 @@
     <version>0.0.1</version>
   </parent>
   <artifactId>hello-impl</artifactId>
+  <packaging>bundle</packaging>
+  <build>
+    <plugins>
+      <plugin>
+	<groupId>org.apache.felix</groupId>
+	<artifactId>maven-bundle-plugin</artifactId>
+	<extensions>true</extensions>
+	<configuration>
+	  <instructions>
+            <_nouses>true</_nouses>
+            <Export-Package>hello.impl</Export-Package>
+	  </instructions>
+	</configuration>
+      </plugin>
+    </plugins>
+  </build>
   <dependencies>
     <dependency>
       <groupId>${project.groupId}</groupId>
