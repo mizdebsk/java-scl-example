@@ -6,7 +6,7 @@
 
 Name:      %{scl_name}
 Version:   1
-Release:   1%{?dist}
+Release:   2%{?dist}
 Summary:   XXX
 License:   XXX
 URL:       XXX
@@ -35,7 +35,7 @@ Collection.
 Summary:   Build configuration the %{scl} Software Collection
 Requires:  scl-utils-build
 Requires:  %{scl_name}-runtime = %{version}-%{release}
-Requires:  %{scl_prefix_greet}runtime
+Requires:  %{scl_prefix_greet}scldevel
 
 %description build
 Essential build configuration macros for building the %{scl}
@@ -214,5 +214,8 @@ install -d -m 755 %{buildroot}%{_datadir}/maven-poms
 %{_root_sysconfdir}/rpm/macros.%{scl_name_base}-scldevel
 
 %changelog
+* Thu Nov 27 2014 Mikolaj Izdebski <mizdebsk@redhat.com> - 1-2
+- Fix requires on greet1-scldevel
+
 * Thu Nov 27 2014 Mikolaj Izdebski <mizdebsk@redhat.com> - 1-1
 - Initial packaging
