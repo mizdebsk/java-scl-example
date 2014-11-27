@@ -1,10 +1,12 @@
-%global scl greet1
+%{!?scl_name_base:%global scl_name_base greet}
+%{!?scl_name_version:%global scl_name_version 1}
+%{!?scl:%global scl %{scl_name_base}%{scl_name_version}}
 %global scl_vendor mizdebsk
 %scl_package %scl
 
 Name:      %{scl_name}
 Version:   1
-Release:   1%{?dist}
+Release:   2%{?dist}
 Summary:   XXX
 License:   XXX
 URL:       XXX
@@ -15,7 +17,7 @@ BuildRequires: javapackages-tools
 
 # List everything in the SCL here so that installation of only the metapackage brings in
 # everything we need
-Requires: %{scl_name}-runtime
+Requires: %{scl_name}-runtime = %{version}-%{release}
 
 %description
 Meta-package that will install everything needed to use the %{scl}
@@ -32,11 +34,19 @@ Collection.
 %package   build
 Summary:   Build configuration the %{scl} Software Collection
 Requires:  scl-utils-build
-Requires:  %{scl_name}-runtime
+Requires:  %{scl_name}-runtime = %{version}-%{release}
 
 %description build
 Essential build configuration macros for building the %{scl}
 Software Collection.
+
+%package scldevel
+Summary:    Package shipping development files for %scl
+Requires:   %{scl_name}-runtime = %{version}-%{release}
+
+%description scldevel
+Package shipping development files, especially useful for development of
+packages depending on %scl Software Collection.
 
 %prep
 %setup -q -c -T
@@ -154,6 +164,11 @@ EOF
 %install
 %{scl_install}
 
+cat <<EOF >%{buildroot}%{_root_sysconfdir}/rpm/macros.%{scl_name_base}-scldevel
+%%scl_greet %scl
+%%scl_prefix_greet %scl_prefix
+EOF
+
 install -d -m 755 %{buildroot}%{_scl_scripts}
 install -p -m 755 enable %{buildroot}%{_scl_scripts}/
 
@@ -191,6 +206,12 @@ install -d -m 755 %{buildroot}%{_datadir}/maven-poms
 %files build
 %{_root_sysconfdir}/rpm/macros.%{scl}-config
 
+%files scldevel
+%{_root_sysconfdir}/rpm/macros.%{scl_name_base}-scldevel
+
 %changelog
+* Thu Nov 27 2014 Mikolaj Izdebski <mizdebsk@redhat.com> - 1-2
+- Add scldevel subpackage
+
 * Thu Nov 27 2014 Mikolaj Izdebski <mizdebsk@redhat.com> - 1-1
 - Initial packaging
