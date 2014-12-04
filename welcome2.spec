@@ -6,7 +6,7 @@
 
 Name:      %{scl_name}
 Version:   1
-Release:   3%{?dist}
+Release:   4%{?dist}
 Summary:   XXX
 License:   XXX
 URL:       XXX
@@ -202,6 +202,10 @@ install -d -m 755 %{buildroot}%{_datadir}/maven-effective-poms
 install -d -m 755 %{buildroot}%{_datadir}/maven-fragments
 install -d -m 755 %{buildroot}%{_datadir}/maven-metadata
 install -d -m 755 %{buildroot}%{_datadir}/maven-poms
+install -d -m 755 %{buildroot}%{_libdir}/eclipse/features
+install -d -m 755 %{buildroot}%{_libdir}/eclipse/plugins
+install -d -m 755 %{buildroot}%{_libdir}/eclipse/dropins
+install -d -m 755 %{buildroot}%{_datadir}/eclipse/dropins
 
 %files
 # The base package is empty because it is a meta-package whose sole purpose
@@ -217,6 +221,12 @@ install -d -m 755 %{buildroot}%{_datadir}/maven-poms
 %dir %{_datadir}/maven-fragments
 %dir %{_datadir}/maven-metadata
 %dir %{_datadir}/maven-poms
+%dir %{_libdir}/eclipse
+%dir %{_libdir}/eclipse/features
+%dir %{_libdir}/eclipse/plugins
+%dir %{_libdir}/eclipse/dropins
+%dir %{_datadir}/eclipse
+%dir %{_datadir}/eclipse/dropins
 
 %files build
 %{_root_sysconfdir}/rpm/macros.%{scl}-config
@@ -225,6 +235,9 @@ install -d -m 755 %{buildroot}%{_datadir}/maven-poms
 %{_root_sysconfdir}/rpm/macros.%{scl_name_base}-scldevel
 
 %changelog
+* Thu Dec  4 2014 Mikolaj Izdebski <mizdebsk@redhat.com> - 1-4
+- Install eclipse-filesystem directories
+
 * Thu Dec  4 2014 Mikolaj Izdebski <mizdebsk@redhat.com> - 1-3
 - Generate and install eclipse.conf
 
