@@ -6,7 +6,7 @@
 
 Name:      %{scl_name}
 Version:   1
-Release:   2%{?dist}
+Release:   3%{?dist}
 Summary:   XXX
 License:   XXX
 URL:       XXX
@@ -74,6 +74,16 @@ cat <<EOF >java.conf
 JAVA_LIBDIR=%{_javadir}
 JNI_LIBDIR=%{_jnidir}
 JVM_ROOT=%{_jvmdir}
+EOF
+
+# Eclipse configuration
+cat <<EOF >eclipse.conf
+eclipse.root=%{_libdir}/eclipse
+eclipse.dropins.noarch=%{_datadir}/eclipse/dropins
+eclipse.dropins.archful=%{_libdir}/eclipse/dropins
+eclipse.bundles=%{_javadir},%{_jnidir},%{_javadir}-1.8.0,%{_jnidir}-1.8.0,%{_javadir}-1.7.0,%{_jnidir}-1.7.0,%{_javadir}-1.6.0,%{_jnidir}-1.6.0,%{_javadir}-1.5.0,%{_jnidir}-1.5.0
+scl.namespace=%{?scl}
+scl.root=%{?_scl_root}
 EOF
 
 # XMvn configuration
@@ -174,6 +184,7 @@ install -p -m 755 enable %{buildroot}%{_scl_scripts}/
 
 install -d -m 755 %{buildroot}%{_sysconfdir}/java
 install -p -m 644 java.conf %{buildroot}%{_sysconfdir}/java/
+install -p -m 644 eclipse.conf %{buildroot}%{_sysconfdir}/java/
 
 install -d -m 755 %{buildroot}%{_sysconfdir}/xdg/xmvn
 install -p -m 644 configuration.xml %{buildroot}%{_sysconfdir}/xdg/xmvn/
@@ -210,6 +221,9 @@ install -d -m 755 %{buildroot}%{_datadir}/maven-poms
 %{_root_sysconfdir}/rpm/macros.%{scl_name_base}-scldevel
 
 %changelog
+* Thu Dec  4 2014 Mikolaj Izdebski <mizdebsk@redhat.com> - 1-3
+- Generate and install eclipse.conf
+
 * Thu Nov 27 2014 Mikolaj Izdebski <mizdebsk@redhat.com> - 1-2
 - Add scldevel subpackage
 
